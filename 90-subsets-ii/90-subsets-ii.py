@@ -1,13 +1,29 @@
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        powerset = set()
+        trie = {}
         nums.sort()
-        def rec(i, subset):
-            if i == len(nums):
-                powerset.add(tuple(subset))
-                return
-            rec(i+1, subset+[nums[i]])
-            rec(i+1, subset)
         
-        rec(0, [])
-        return list(powerset)
+        def rec(i, triet):
+            if i == len(nums):
+                return
+            if nums[i] not in triet:
+                triet[nums[i]]={}
+            rec(i+1, triet[nums[i]])
+            rec(i+1, triet)
+
+        def recret(triet):
+            if len(triet) == 0:
+                return []
+            res = []
+            for i in triet:
+                res.append([i])
+                for reline in recret(triet[i]):
+                    res.append([i]+reline)
+                
+            return res
+        
+        
+        rec(0, trie)
+        res = recret(trie)
+        res.append([])
+        return res
