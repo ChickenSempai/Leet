@@ -2,8 +2,8 @@ class Solution:
     def partition(self, ss: str) -> List[List[str]]:
         sdict = {}
         def rec(s):
-            if s in sdict:
-                return sdict[s]
+            # if s in sdict:
+                # return sdict[s]
             resarr = []
             if len(s) == 1:
                 return [[s]]
@@ -15,7 +15,7 @@ class Solution:
                         resarr.append([s[0:i]]+r)
                     if len(s[i:len(s)]) == 0:
                         resarr.append([s[0:i]])
-            sdict[s] = resarr
+            # sdict[s] = resarr
             return resarr
         
         return rec(ss)
