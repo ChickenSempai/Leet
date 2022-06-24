@@ -16,23 +16,20 @@ public:
         if (root != nullptr)
             fifo.push(root);
         std::vector<vector<int>> res;
-        size_t level = -1;
-        size_t fifopack = 0;
         while(!fifo.empty()){
-            if (fifopack==0){
-                res.push_back({});
-                ++level;
-                fifopack = fifo.size();
+            size_t cursize = fifo.size();
+            std::vector<int> temp;
+            while(cursize-- > 0){
+                auto *popped = fifo.front();
+                temp.push_back(popped->val);
+                if (popped->left)
+                    fifo.push(popped->left);
+                if (popped->right)
+                    fifo.push(popped->right);
+                fifo.pop();
             }
-            auto *popped = fifo.front();
-            fifopack--;
-            // std::cout << popped->val;
-            res[level].push_back(popped->val);
-            if (popped->left)
-                fifo.push(popped->left);
-            if (popped->right)
-                fifo.push(popped->right);
-            fifo.pop();
+            res.push_back(temp);
+            temp.clear();
         }
         return res;
     }
