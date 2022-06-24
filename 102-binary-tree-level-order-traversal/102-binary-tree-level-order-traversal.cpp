@@ -16,9 +16,9 @@ public:
         if (root != nullptr)
             fifo.push(root);
         std::vector<vector<int>> res;
+        std::vector<int> temp;
         while(!fifo.empty()){
             size_t cursize = fifo.size();
-            std::vector<int> temp;
             while(cursize-- > 0){
                 auto *popped = fifo.front();
                 temp.push_back(popped->val);
