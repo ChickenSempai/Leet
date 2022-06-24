@@ -12,9 +12,9 @@
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
-        std::deque<TreeNode*> fifo;
+        std::queue<TreeNode*> fifo;
         if (root != nullptr)
-            fifo.push_back(root);
+            fifo.push(root);
         std::vector<vector<int>> res;
         size_t level = -1;
         size_t fifopack = 0;
@@ -28,11 +28,11 @@ public:
             fifopack--;
             // std::cout << popped->val;
             res[level].push_back(popped->val);
-            if (popped->left != nullptr)
-                fifo.push_back(popped->left);
-            if (popped->right != nullptr)
-                fifo.push_back(popped->right);
-            fifo.pop_front();
+            if (popped->left)
+                fifo.push(popped->left);
+            if (popped->right)
+                fifo.push(popped->right);
+            fifo.pop();
         }
         return res;
     }
