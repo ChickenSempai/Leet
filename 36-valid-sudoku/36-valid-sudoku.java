@@ -8,7 +8,6 @@ class Solution {
             horizontal.set(i, new HashSet());
             cubes.set(i, new HashSet());
         }
-        System.out.println(vertical.size());
         for(int i=0; i < 9; i++){
             for(int j=0; j<9; j++){
                 if (board[i][j]!='.') {
