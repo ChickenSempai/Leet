@@ -24,10 +24,6 @@ class Solution {
                     vertical.get(i).add(board[i][j]);
                     horizontal.get(j).add(board[i][j]);
                     cubes.get((int) Math.floor(i / 3) * 3 + (int) Math.floor(j / 3)).add(board[i][j]);
-                    System.out.println(vertical.toString());
-                    System.out.println(horizontal.toString());
-                    System.out.println(cubes.toString());
-                    System.out.println(' ');
                 }
             }
         }
